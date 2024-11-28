@@ -1,0 +1,33 @@
+{
+    "name": "larafly/feishu",
+    "description": "飞书sdk",
+    "type": "library",
+    "require-dev": {
+        "pestphp/pest": "^3.5"
+    },
+    "license": "MIT",
+    "autoload": {
+        "psr-4": {
+            "Larafly\\Feishu\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "foryoufeng",
+            "email": "foryoufeng@gmail.com"
+        }
+    ],
+    "require": {},
+    "config": {
+        "allow-plugins": {
+            "pestphp/pest-plugin": true
+        }
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "Larafly\\Feishu\\FeishuServiceProvider"
+            ]
+        }
+    }
+}
