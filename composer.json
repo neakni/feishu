@@ -9,7 +9,7 @@
     ],
     "type": "library",
     "require": {
-        "guzzlehttp/guzzle": "^7.9",
+        "guzzlehttp/guzzle": "^7.9"
     },
     "require-dev": {
         "pestphp/pest": "^3.5"
