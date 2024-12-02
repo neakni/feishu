@@ -1,7 +1,17 @@
 {
     "name": "larafly/feishu",
-    "description": "飞书sdk",
+    "description": "laravel 飞书sdk",
+    "authors": [
+        {
+            "name": "foryoufeng",
+            "email": "foryoufeng@gmail.com"
+        }
+    ],
     "type": "library",
+    "require": {
+        "guzzlehttp/guzzle": "^7.9",
+        "overtrue/socialite": "^4.11"
+    },
     "require-dev": {
         "pestphp/pest": "^3.5"
     },
@@ -11,13 +21,11 @@
             "Larafly\\Feishu\\": "src/"
         }
     },
-    "authors": [
-        {
-            "name": "foryoufeng",
-            "email": "foryoufeng@gmail.com"
+    "autoload-dev": {
+        "psr-4": {
+            "Larafly\\Feishu\\Tests\\": "tests/"
         }
-    ],
-    "require": {},
+    },
     "config": {
         "allow-plugins": {
             "pestphp/pest-plugin": true
