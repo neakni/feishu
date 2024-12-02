@@ -8,7 +8,7 @@ composer install larafly/feishu
 
 ## Config
 
-1. publishe the config file to `config` directory：
+1. publish the config file to `config` directory：
 
 ```shell
 php artisan vendor:publish --provider="Larafly\Feishu\FeishuServiceProvider"
@@ -49,7 +49,7 @@ redirect($redirect_uri);
 //after login
 $code = request()->get('code');
 try {
-    $user_info = Application::getInstance($config)->createAuth()->getUserByToken();
+    $user_info = Application::getInstance($config)->createAuth()->getUserByCode($code);
     dump($user_info);
  }catch (\Larafly\Feishu\Exceptions\RequestException $exception){
     
@@ -69,10 +69,12 @@ $config = [
     "redirect_uri" =>"http://localhost"
 ];
 $message = Application::getInstance($config)->createMessage();
+
 //send message str
 $content = "send a message";
 $receive_id = 'ou_ce8eaa702c9f310401a2b21f2a00b13d';
 $response = $message->text($receive_id,$content);
+
 //send message card
 $receive_id = 'ou_ce8eaa702c9f310401a2b21f2a00b13d';
 $template_id = "AAqjjGlz51b4V";
