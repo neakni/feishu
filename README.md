@@ -3,7 +3,7 @@
 ## install
 
 ```sh
-composer install larafly/feishu
+composer require larafly/feishu
 ```
 
 ## Config
