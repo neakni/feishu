@@ -62,3 +62,25 @@ it('get user access token', function () {
     expect($access_token)->not()->toBeNull();
 });
 
+it('send batch message', function () {
+    $message = Application::getInstance()->createMessage();
+    $open_ids = ['ou_ce8eaa702c9f310401a2b21f2a00b13d'];
+    $content = "batch message";
+    $response = $message->batchText($open_ids,$content);
+    expect($response['code'])->toBe(0);
+});
+
+it('send batch card', function () {
+    $message = Application::getInstance()->createMessage();
+    $open_ids = ['ou_ce8eaa702c9f310401a2b21f2a00b13d'];
+    $template_id = "AAqjjGlz51b4V";
+    $template_variable = [
+        'title'=>"企业认证",
+        'id'=>"123",
+        'content'=>"你有企业认证需要审核\n创建时间:2024-01-01 12:12:12",
+        'created_info'=>"更新时间:2024-01-01 12:12:12",
+        "redirect_url"=>"https://open.feishu.cn/cardkit/editor?cardId=AAqjjGlz51b4V&cardLocale=zh_cn&host=message"
+    ];
+    $response = $message->batchCard($open_ids,$template_id,$template_variable);
+    expect($response['code'])->toBe(0);
+});
