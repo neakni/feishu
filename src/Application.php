@@ -2,6 +2,7 @@
 
 namespace Larafly\Feishu;
 
+use Larafly\Feishu\Contacts\User;
 use Larafly\Feishu\Contracts\Config;
 use Larafly\Feishu\Exceptions\InvalidArgumentException;
 use Larafly\Feishu\Support\AppClient;
@@ -104,11 +105,21 @@ class Application
      */
     public function createMessage(): Message
     {
-        return new Message(
-            app_id: $this->config->get('app_id'),
-            app_secret: $this->config->get('app_secret'),
-            access_token: $this->createAccessToken()->getToken(),
-        );
+        return new Message(...$this->getConfiguration());
+    }
+
+    public function createUser(): User
+    {
+        return new User(...$this->getConfiguration());
+    }
+
+    private function getConfiguration(array $config = []): array
+    {
+        return array_merge([
+            'app_id' => $this->config->get('app_id'),
+            'app_secret' => $this->config->get('app_secret'),
+            'access_token' => $this->createAccessToken()->getToken(),
+        ], $config);
     }
 
     /**
@@ -121,10 +132,13 @@ class Application
      */
     public function createClient(): AppClient
     {
-        return new AppClient(
-            app_id: $this->config->get('app_id'),
-            app_secret: $this->config->get('app_secret'),
-            access_token: $this->createAccessToken()->getToken(),
-        );
+        return new AppClient(...$this->getConfiguration());
+    }
+
+    public static function isFeishuClient()
+    {
+        $userAgent = request()->header('User-Agent');
+
+        return str_contains(strtolower($userAgent), 'feishu');
     }
 }

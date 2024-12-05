@@ -18,4 +18,13 @@ class AppClient extends BaseClient
         return parent::post($url, $data, $header);
     }
 
+    public function get($url, ?array $data = [], ?array $header = []): array
+    {
+        $header = array_merge($header,[
+            'Authorization' => 'Bearer '.$this->access_token,
+        ]);
+
+        return parent::get($url, $header);
+    }
+
 }

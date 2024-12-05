@@ -87,3 +87,29 @@ $template_variable = [
 ];
 $response = $message->card($receive_id,$template_id,$template_variable);
 ```
+
+* get user information
+
+```php
+
+$mobiles = [
+      '13222222222'
+] ;
+$user = Application::getInstance()->createUser();
+$res  = $user->getOpenIdByMobiles($mobiles);
+dump($res);
+
+```
+
+* request other api
+
+```php
+
+$mobiles = [
+      '13222222222'
+] ;
+$client = Application::getInstance()->createClient();
+$res  =  $client->get('/user/v1/batch_get_id?mobiles='.$mobiles);;
+dump($res);
+
+```
