@@ -21,7 +21,9 @@ class Auth extends BaseClient
     {
         $query = $this->getCodeFields() + ($this->state ? ['state' => $this->state] : []);
 
-        return $this->baseUrl.'authen/v1/index'.'?'.\http_build_query($query, '', '&');
+        // return $this->baseUrl.'authen/v1/index'.'?'.\http_build_query($query, '', '&');
+        // 2025最新官方调用地址如下：
+        return 'https://accounts.feishu.cn/open-apis/authen/v1/authorize'.'?'.\http_build_query($query, '', '&');
 
     }
     protected function getCodeFields(): array
